@@ -1,7 +1,7 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend API for MedRemind - Express + MongoDB",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,11 @@
     "start": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Aman <amang@users.noreply.github.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aarg07/MEDREMIND_HEALTHCARE_AMAN.git"
+  },
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^6.0.0",

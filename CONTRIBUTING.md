@@ -1,52 +1,32 @@
-# Contributing to MedRemind
+## Contributing to MedRemind
 
-Thank you for helping improve MedRemind.
+Thanks for improving MedRemind. This document describes the minimal workflow we expect for contributions.
 
-## How to Contribute
+### Workflow
 
-Use this workflow for every contribution:
-
-1. Start from the latest `main` branch.
+1. Update your local `main` and create a feature branch:
 
 ```bash
 git checkout main
 git pull origin main
-```
-
-2. Create a new feature branch for your work.
-
-```bash
 git checkout -b feature/short-description
 ```
 
-3. Make your changes and check them locally.
+2. Make small, focused commits with conventional messages (e.g., `feat:`, `fix:`, `chore:`).
 
-```bash
-git status
-git diff
-```
+3. Run local checks and tests (see `backend/README.md` and `frontend/README.md`).
 
-4. Commit your work with a clear message.
-
-```bash
-git add .
-git commit -m "feat: describe your change"
-```
-
-5. Push the branch to the remote repository.
+4. Push and open a pull request against `main`:
 
 ```bash
 git push -u origin feature/short-description
 ```
 
-6. Open a pull request from your branch into `main`.
+5. Add a clear PR description and link any related issues. Requests will be reviewed by maintainers.
 
-7. Wait for review and approval.
+### Review and merging
 
-## Who Merges?
+- PRs require at least one approving review and passing CI checks before merge.
+- Maintainers will squash or rebase commits when merging to keep history clean.
 
-- Contributors should not merge directly into `main`.
-- Contributors open a pull request and stop there.
-- Maintainers review the change and merge it into `main` after approval.
-
-For coding standards, pull request rules, and common git commands, see [PROJECT_GUIDELINES.md](PROJECT_GUIDELINES.md).
+See `PROJECT_GUIDELINES.md` for coding standards and CI details.

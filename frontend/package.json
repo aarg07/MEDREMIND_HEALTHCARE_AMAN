@@ -1,7 +1,13 @@
 {
-  "name": "frontend",
+  "name": "medremind-frontend",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "MedRemind web client built with React and Vite",
+  "author": "Aman <amang@users.noreply.github.com>",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aarg07/MEDREMIND_HEALTHCARE_AMAN.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

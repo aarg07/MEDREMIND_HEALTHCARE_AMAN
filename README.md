@@ -1,21 +1,20 @@
-# MedRemind
+## MedRemind
 
-Smart Healthcare Tracker.
+MedRemind is a healthcare reminder platform with a React + Vite frontend and an Express + MongoDB backend.
 
-## Overview
+## Quick start
 
-MedRemind is organized as a simple monorepo with a React frontend and an Express backend scaffold.
+- Backend: see `backend/README.md` (API server)
+- Frontend: see `frontend/README.md` (web client)
 
-## Start Here
-
-For local setup, branch workflow, coding standards, and common git commands, see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## Project Structure
+## Project layout
 
 ```text
 MedRemind/
-├── backend/    # Express backend scaffold
-├── frontend/   # React + Vite frontend
+├── backend/    # Express API and services
+├── frontend/   # React app (Vite)
 ├── CONTRIBUTING.md
 └── README.md
 ```
+
+For details on contribution workflow, coding standards, environment variables, and running locally, see `CONTRIBUTING.md`.

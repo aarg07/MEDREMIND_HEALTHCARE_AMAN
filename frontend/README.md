@@ -1,3 +1,26 @@
+# Frontend — MedRemind
+
+Quick start for the web client.
+
+Prerequisites
+- Node.js 18+ and npm
+
+Run locally
+
+```bash
+cd frontend
+npm ci
+npm run dev
+```
+
+Build for production
+
+```bash
+npm run build
+```
+
+Environment
+- Use a `.env` file or your environment to set `VITE_API_URL` to the backend base URL.
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
