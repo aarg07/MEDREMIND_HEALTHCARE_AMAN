@@ -4,6 +4,7 @@ import { getCurrentUserService } from "./auth.service.js";
 import { verifyEmailService } from "./auth.service.js";
 import { forgotPasswordService } from "./auth.service.js";
 import { resetPasswordService } from "./auth.service.js";
+import { googleLoginService } from "./auth.service.js";
 import { accessTokenCookieOptions } from "../../shared/constants/cookieOptions.js";
 
 export const register = async (req, res, next) => {
@@ -25,8 +26,9 @@ export const register = async (req, res, next) => {
 export const login = async (req, res, next) => {
     try{
         const {token, user} = await loginService(req.body);
+        const cookieName = process.env.COOKIE_NAME || "medremind_token";
 
-        res.cookie(process.env.COOKIE_NAME, token, accessTokenCookieOptions);
+        res.cookie(cookieName, token, accessTokenCookieOptions);
 
         return res.status(200).json({
             success: true,
@@ -84,21 +86,21 @@ export const resetPassword = async (req,res,next) => {
 }
 
 export const logout = async (req,res,next) => {
-    res.clearCookie(process.env.COOKIE_NAME, accessTokenCookieOptions);
+    const cookieName = process.env.COOKIE_NAME || "medremind_token";
+    res.clearCookie(cookieName, accessTokenCookieOptions);
     return res.status(200).json({
         success: true,
         message: "Logged out successfully.",
     });
 };
 
-import { googleLoginService } from "./auth.service.js";
-
 export const googleLogin = async (req, res, next) => {
     try {
         const { token: googleToken, role } = req.body;
         const { token, user } = await googleLoginService(googleToken, role);
+        const cookieName = process.env.COOKIE_NAME || "medremind_token";
 
-        res.cookie(process.env.COOKIE_NAME, token, accessTokenCookieOptions);
+        res.cookie(cookieName, token, accessTokenCookieOptions);
 
         return res.status(200).json({
             success: true,

@@ -3,20 +3,11 @@ import api from "../lib/axios";
 // ---------------------------------------------------------------------------
 // Analytics Service
 //
-// Backend analytics endpoints do not exist yet (see Analytics_Backend_Context.md
-// - "Current Backend Status: Not implemented"). Every function below returns
-// placeholder data shaped exactly like the future API response so that once
-// the real endpoints exist, only the bodies of these functions change -
-// no component in components/analytics or pages/*/*, Analytics.jsx needs
-// to be touched.
-//
-// Future endpoints (see Analytics_Backend_Context.md):
-//   GET /api/analytics/patient
-//   GET /api/analytics/doctor
-//   GET /api/analytics/dashboard
+// Uses backend analytics endpoints when available.
+// If a mock mode is needed for local development, flip USE_MOCK below.
 // ---------------------------------------------------------------------------
 
-const USE_MOCK = false; // flip to false once the backend ships
+const USE_MOCK = false;
 
 function delay(ms = 400) {
   return new Promise((resolve) => setTimeout(resolve, ms));

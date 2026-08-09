@@ -8,17 +8,19 @@ import { comparePassword } from "../../shared/utils/comparePassword.js";
 import { generateToken } from "../../shared/utils/generateToken.js";
 import { generateSecureToken } from "../../shared/utils/generateSecureToken.js";
 import { sendVerificationEmail, sendResetPasswordEmail } from "../notification/services/email.service.js";
+import { OAuth2Client } from "google-auth-library";
 
 export const registerService = async (userData) => {
     const { name, email, password, role } = userData;
-    const existingUser = await User.findOne({email});
+    const lowercasedEmail = email?.toLowerCase?.();
+    const existingUser = await User.findOne({ email: lowercasedEmail });
     if(existingUser){
         throw new ApiError(409, "Email already exists.")
     } 
     const hashedPassword = await hashPassword(password);
     const user = await User.create({
         name,
-        email,
+        email: lowercasedEmail,
         password: hashedPassword,
         role
     });
@@ -65,7 +67,8 @@ export const registerService = async (userData) => {
 
 export const loginService = async (userData) => {
     const {email, password} = userData;
-    const user = await User.findOne({email});
+    const lowercasedEmail = email?.toLowerCase?.();
+    const user = await User.findOne({ email: lowercasedEmail });
     if(!user){
         throw new ApiError(401, "Invalid email or password.");
     }
@@ -129,7 +132,8 @@ export const verifyEmailService = async (token) => {
 };
 
 export const forgotPasswordService = async (email) => {
-    const user = await User.findOne({email});
+    const lowercasedEmail = email?.toLowerCase?.();
+    const user = await User.findOne({ email: lowercasedEmail });
     if(!user){
         return {
             success: true,
@@ -178,8 +182,6 @@ export const resetPasswordService = async (token, password) => {
 
 }
 
-import { OAuth2Client } from "google-auth-library";
-
 export const googleLoginService = async (token, role) => {
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     
@@ -190,8 +192,9 @@ export const googleLoginService = async (token, role) => {
     const payload = ticket.getPayload();
     
     const { email, name } = payload;
+    const lowercasedEmail = email?.toLowerCase?.();
     
-    let user = await User.findOne({ email });
+    let user = await User.findOne({ email: lowercasedEmail });
     
     if (user) {
         if (role && user.role !== role) {
@@ -212,7 +215,7 @@ export const googleLoginService = async (token, role) => {
         }
         user = await User.create({
             name,
-            email,
+            email: lowercasedEmail,
             role,
             authProvider: "google",
             emailVerified: true,

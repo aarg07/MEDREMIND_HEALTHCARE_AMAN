@@ -3,8 +3,8 @@ import { verifyToken } from "../shared/utils/verifyToken.js";
 
 export const authenticate = async (req,res,next) => {
     try{
-       
-        let token = req.cookies[process.env.COOKIE_NAME];
+        const cookieName = process.env.COOKIE_NAME || "medremind_token";
+        let token = req.cookies[cookieName];
         if (!token && req.headers.authorization && req.headers.authorization.startsWith("Bearer ")) {
             token = req.headers.authorization.split(" ")[1];
         }
